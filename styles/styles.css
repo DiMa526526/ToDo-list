@@ -1,0 +1,249 @@
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./fonts/Ubuntu-Light.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("./fonts/Ubuntu-Medium.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "BIZUDPGothic";
+  src: url("./fonts/BIZUDPGothic-Regular.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --color-background: #eef4fb;
+  --color-light-gray: #d3d1d1;
+  --color-white: #ffffff;
+  --color-blue: #2f80ed;
+  --color-in-process: #7eb2f571;
+  --color-in-process-text: #4290f7;
+  --color-complete: #a8e6a367;
+  --color-complete-text: #58b452;
+  --color-basket: #e4a5a583;
+  --color-basket-text: #d45959;
+  --color-backlog: #e6e3e3;
+  --color-backlog-text: #888888;
+
+  --transition-duration: 0.2s;
+
+  --font-family-base: "Ubuntu", sans-serif;
+  --font-family-accent: "BIZUDPGothic", sans-serif;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.75;
+  background-color: var(--color-background);
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-accent);
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  background-color: var(--color-blue);
+  padding-left: 20px;
+  color: var(--color-white);
+  font-size: 12px;
+}
+
+.add-task {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  padding: 20px;
+  margin: 30px 20px;
+  border-radius: 10px;
+}
+
+.add-task-form {
+  width: 100%;
+}
+
+.add-task-header {
+  margin-bottom: 5px;
+}
+
+.add-task-body {
+  display: flex;
+  gap: 12px;
+}
+
+.add-task-form-input {
+  height: 40px;
+  border: 2px solid var(--color-light-gray);
+  border-radius: 10px;
+  padding-left: 10px;
+  transition: border-color var(--transition-duration);
+}
+
+.add-task-form-input:focus {
+  outline: none;
+  border-color: var(--color-blue);
+}
+
+.add-task-form-button {
+  padding: 10px 25px;
+  background-color: var(--color-blue);
+  color: var(--color-white);
+  min-width: 150px;
+  border: none;
+  border-radius: 5px;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color var(--transition-duration);
+}
+
+.add-task-form-button:hover {
+  background-color: #256ecc;
+}
+
+.task {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 20px;
+  column-gap: 30px;
+}
+
+.task-group h3 {
+  display: inline;
+  border-radius: 5px;
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.task-group ul {
+  list-style: none;
+  margin: 20px 0 0;
+}
+
+.task-group li {
+  position: relative;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background-color: var(--color-white);
+  transition: all var(--transition-duration) ease;
+}
+
+.task-group li:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.task-group li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 5px;
+  border-radius: 10px 0 0 10px;
+  transition: all var(--transition-duration) ease;
+}
+
+.task-group li:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.task-group li:hover::before {
+  width: 6px;
+}
+
+.backlog h3 {
+  background-color: var(--color-backlog);
+  color: var(--color-backlog-text);
+}
+
+.backlog li::before {
+  background-color: var(--color-backlog);
+}
+
+.in-process h3 {
+  background-color: var(--color-in-process);
+  color: var(--color-in-process-text);
+}
+
+.in-process li::before {
+  background-color: var(--color-in-process);
+}
+
+.complete h3 {
+  background-color: var(--color-complete);
+  color: var(--color-complete-text);
+}
+
+.complete li::before {
+  background-color: var(--color-complete);
+}
+
+.basket h3 {
+  background-color: var(--color-basket);
+  color: var(--color-basket-text);
+}
+
+.basket li::before {
+  background-color: var(--color-basket);
+}
+
+.basket-button-remove {
+  width: 100%;
+  height: 40px;
+  margin-top: 20px;
+  background-color: var(--color-basket-text);
+  color: var(--color-white);
+  border-radius: 5px;
+  border: none;
+  font-family: var(--font-family-base);
+  font-weight: 700;
+  transition: background-color var(--transition-duration);
+}
+
+.basket-button-remove:hover {
+  cursor: pointer;
+  background-color: #9c4343;
+}
