@@ -329,10 +329,6 @@ summary {
   display: list-item;
 }
 
-li {
-  list-style-type: none
-}
-
 /* Misc
    ========================================================================== */
 
@@ -342,6 +338,10 @@ li {
 
 template {
   display: none;
+}
+
+li {
+  list-style-type: none
 }
 
 /**
