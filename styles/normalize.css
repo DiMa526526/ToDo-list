@@ -42,6 +42,12 @@ h1 {
   margin: 0.67em 0;
 }
 
+ul { list-style-type: none; }
+
+li {
+  list-style-type: none
+}
+
 /* Grouping content
    ========================================================================== */
 
@@ -329,12 +335,6 @@ summary {
   display: list-item;
 }
 
-ul { list-style-type: none; }
-
-li {
-  list-style-type: none
-}
-
 /* Misc
    ========================================================================== */
 
@@ -354,3 +354,4 @@ template {
   display: none;
 
 }
+
