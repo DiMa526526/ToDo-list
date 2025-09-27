@@ -329,6 +329,8 @@ summary {
   display: list-item;
 }
 
+ul { list-style-type: none; }
+
 li {
   list-style-type: none
 }
@@ -350,4 +352,5 @@ template {
 
 [hidden] {
   display: none;
+
 }
