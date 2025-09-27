@@ -169,6 +169,9 @@ h6 {
   background-color: var(--color-white);
   cursor: pointer;
   transition: all var(--transition-duration) ease;
+}
+
+.task-group li:not(:last-child) {
   margin-bottom: 8px;
 }
 
