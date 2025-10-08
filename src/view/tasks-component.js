@@ -3,9 +3,9 @@ import {createElement} from '../framework/render.js';
 
 function createTasksComponentTemplate() {
     return (
-        `<section class="task-group backlog">
+        `<div class="task">
          
-        </section>`
+        </div>`
       );
 }
 
