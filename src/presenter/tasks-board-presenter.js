@@ -1,55 +1,68 @@
+import { render } from "../framework/render.js";
 import TaskComponent from "../view/task-one-component.js";
+import TaskListComponent from "../view/task-list-component.js";
+import TasksComponent from "../view/tasks-component.js";
+import BasketClearButtonComponent from "../view/basket-clear-button-component.js";
+import EmptyListComponent from "../view/empty-list-component.js";
+import { TaskStatus } from "../const.js";
 
 export default class TasksBoardPresenter {
+  #boardContainer = null;
+  #taskModel = null;
+  #boardTasks = [];
+  #tasksBoardComponent = new TasksComponent();
+
   constructor({ container, taskModel }) {
-    this.container = container;
-    this.taskModel = taskModel;
-    this.boardTasks = [];
+    this.#boardContainer = container;
+    this.#taskModel = taskModel;
   }
 
   init() {
-    this.boardTasks = this.taskModel.getTasks();
-    this.renderTasks();
+    this.#boardTasks = [...this.#taskModel.tasks];
+    this.#renderBoard();
   }
 
-  renderTasks() {
-    const tasksByStatus = {
-      backlog: this.boardTasks.filter((task) => task.status === "backlog"),
-      process: this.boardTasks.filter((task) => task.status === "process"),
-      done: this.boardTasks.filter((task) => task.status === "done"),
-      basket: this.boardTasks.filter((task) => task.status === "basket"),
-    };
+  #renderBoard() {
+    render(this.#tasksBoardComponent, this.#boardContainer);
 
-    const statusToCssClass = {
-      backlog: "backlog",
-      process: "in-process",
-      done: "complete",
-      basket: "basket",
-    };
-
-    Object.entries(tasksByStatus).forEach(([status, tasks]) => {
-      const cssClass = statusToCssClass[status];
-      const statusContainer = this.container.querySelector(
-        `.${cssClass} .list`
-      );
-
-      console.log(
-        `Status: ${status}, CSS Class: ${cssClass}, Tasks: ${tasks.length}, Container:`,
-        statusContainer
-      );
-
-      if (statusContainer) {
-        statusContainer.innerHTML = "";
-
-        tasks.forEach((task) => {
-          const taskComponent = new TaskComponent(task);
-          statusContainer.appendChild(taskComponent.getElement());
-        });
-      } else {
-        console.warn(
-          `Container not found for status: ${status} (CSS class: ${cssClass})`
-        );
-      }
+    Object.values(TaskStatus).forEach((status) => {
+      this.#renderTasksList(status);
     });
+  }
+
+  #renderTasksList(status) {
+    const tasksListComponent = new TaskListComponent(status);
+    render(tasksListComponent, this.#tasksBoardComponent.element);
+
+    const tasksForStatus = this.#boardTasks.filter(
+      (task) => task.status === status
+    );
+
+    const listContainer = tasksListComponent.element.querySelector(".list");
+
+    if (tasksForStatus.length === 0) {
+      this.#renderEmptyList(listContainer);
+    } else {
+      tasksForStatus.forEach((task) => this.#renderTask(task, listContainer));
+    }
+
+    if (status === TaskStatus.BASKET) {
+      this.#renderClearButton(tasksListComponent.element);
+    }
+  }
+
+  #renderEmptyList(container) {
+    const emptyListComponent = new EmptyListComponent();
+    render(emptyListComponent, container);
+  }
+
+  #renderClearButton(container) {
+    const buttonComponent = new BasketClearButtonComponent();
+    render(buttonComponent, container);
+  }
+
+  #renderTask(task, container) {
+    const taskComponent = new TaskComponent(task);
+    render(taskComponent, container);
   }
 }

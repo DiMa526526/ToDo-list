@@ -1,48 +1,31 @@
-import { createElement } from "../framework/render.js";
+import { AbstractComponent } from "../framework/view/abstract-component.js";
 import { StatusTitles } from "../const.js";
 
 function createTaskListComponentTemplate(status) {
   const statusTitle = StatusTitles[status] || status;
-
   const cssClassMap = {
     backlog: "backlog",
     process: "in-process",
     done: "complete",
     basket: "basket",
   };
-
   const cssClass = cssClassMap[status] || status;
 
   return `<section class="task-group ${cssClass}">
       <div class="column">
         <h3>${statusTitle}</h3>
         <ul class="list"></ul>
-        ${
-          status === "basket"
-            ? '<button class="basket-button-remove" type="reset">&#10761; Очистить</button>'
-            : ""
-        }
       </div>
     </section>`;
 }
 
-export default class TaskListComponent {
+export default class TaskListComponent extends AbstractComponent {
   constructor(status) {
+    super();
     this.status = status;
   }
 
-  getTemplate() {
+  get template() {
     return createTaskListComponentTemplate(this.status);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }

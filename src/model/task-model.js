@@ -1,15 +1,13 @@
 import { TASKS } from "../mock/task.js";
 
 export default class TaskModel {
-  constructor() {
-    this.tasks = TASKS;
-  }
+  #boardtasks = TASKS;
 
-  getTasks() {
-    return this.tasks;
+  get tasks() {
+    return this.#boardtasks;
   }
 
   getTasksByStatus(status) {
-    return this.tasks.filter((task) => task.status === status);
+    return this.#boardtasks.filter((task) => task.status === status);
   }
 }
