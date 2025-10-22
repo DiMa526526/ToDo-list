@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <title>Todo-List</title>
+    <link rel="stylesheet" href="./styles/normalize.css" />
+    <link rel="stylesheet" href="./styles/styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <h1>Список задач</h1>
+    </header>
+
+    <main class="content">
+      <section class="add-task">
+        <h2 class="visually-hidden">Добавить задачу</h2>
+
+        <form class="add-task-form">
+          <h3 class="add-task-header">Новая задача</h3>
+
+          <div class="add-task-body">
+            <label class="visually-hidden" for="taskname"
+              >Название задачи</label
+            >
+            <input
+              class="add-task-form-input"
+              id="taskname"
+              name="taskname"
+              placeholder="Название задачи..."
+            />
+            <button class="add-task-form-button" type="submit">
+              &#43; Добавить
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <section class="task-group">
+        <h2 class="visually-hidden">Списки задач</h2>
+        <div class="task">
+        <section class="task-group backlog">
+          <div class="column">
+            <h3>Бэклог</h3>
+            <ul class="list">
+              <li>Выучить JS</li>
+              <li>Выучить React</li>
+              <li>Сделать домашку</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="task-group in-process">
+          <div class="column">
+            <h3>В процессе</h3>
+            <ul class="list">
+              <li>Выпить смузи</li>
+              <li>Попить воды</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="task-group complete">
+          <div class="column">
+            <h3>Готово</h3>
+            <ul class="list">
+              <li>Позвонить маме</li>
+              <li>Погладить кота</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="task-group basket">
+          <div class="column">
+            <h3>Корзина</h3>
+            <ul class="list">
+              <li>Сходить погулять</li>
+              <li>Прочитать войну и мир</li>
+            </ul>
+            <button class="basket-button-remove" type="reset">
+              &#10761; Очистить
+            </button>
+          </div>
+        </section>
+      </div>
+      </section>
+    </main>
+  </body>
+</html>
