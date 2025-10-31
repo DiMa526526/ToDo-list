@@ -42,12 +42,6 @@ h1 {
   margin: 0.67em 0;
 }
 
-ul { list-style-type: none; }
-
-li {
-  list-style-type: none
-}
-
 /* Grouping content
    ========================================================================== */
 
@@ -346,12 +340,14 @@ template {
   display: none;
 }
 
+li {
+  list-style-type: none
+}
+
 /**
  * Add the correct display in IE 10.
  */
 
 [hidden] {
   display: none;
-
 }
-

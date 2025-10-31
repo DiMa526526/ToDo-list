@@ -169,6 +169,9 @@ h6 {
   background-color: var(--color-white);
   cursor: pointer;
   transition: all var(--transition-duration) ease;
+}
+
+.task-group li:not(:last-child) {
   margin-bottom: 8px;
 }
 
@@ -244,32 +247,4 @@ h6 {
 .basket-button-remove:hover {
   cursor: pointer;
   background-color: #9c4343;
-}
-
-.empty-list {
-  list-style: none;
-  border: 2px dashed #ccc;
-  color: #aaa;
-  text-align: center;
-  padding: 20px;
-  margin: 10px 0;
-  border-radius: 8px;
-  font-size: 14px;
-  font-style: italic;
-  background-color: #fafafa;
-}
-
-.board_no-tasks {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 280px;
-  margin: 20px;
-  background-color: var(--color-white);
-  border-radius: 12px;
-  border: 2px solid var(--color-light-gray);
-  gap: 16px;
-  padding: 40px;
-  text-align: center;
 }
